@@ -49,8 +49,663 @@ br.mo {
 
 
 
+/*   header style    */
+header {
+    background: rgba(0, 0, 0, 0.2);   /*투명도까지 줄수있는 rgba를 선택하고 투명도는 0.2를 줬다.*/
+    height : 100px;
+    line-height: 100px;
+
+    position: fixed;
+    top: 0;  /*화면 상단에 붙도록*/
+    z-index: 9999;  /*깔리면안됨 헤더는 맨 위에 있어야 하니 상징적인 큰 값인 9999*/
+    /*그럼 좀 짧아졌으니 width를 주자*/
+    width: 100%;
+}
 
 
+
+
+
+
+ header .inner-header {
+     /* background: orange;  영역이 잘 안보이니 일단 색 박아넣고 확인하면서 나중에 지울꺼임  */
+     width: 84%;  /*부모라는 100%의 84%  (참고로 width의 기본비율은 100%이다.)   */
+    margin: 0 auto; /*상하 0 좌우 오토 > 공식같은코드 > 중앙으로 배치됨 양옆의 비율을 생각하며 배치가 됨 */
+} 
+
+
+
+
+
+ header .inner-header .logo {
+     /*background: skyblue; */
+    float: left; 
+    /* 근데 이미지가 쓸데없는 부분들도 있으니 https://www.iloveimg.com/ko/crop-image (이미지자르기 검색) 가서 자르자*/
+    /*이미지 자르기 성공 후 마저 작업하자 */
+     width: 200px;
+} 
+
+
+
+
+header .inner-header .logo img {
+     width: 100%; /*그럼 군더더기 없이 길이가 맞는다. 위의 width줄여도 동일한 비율로 변경될 것이다.*/ 
+    vertical-align: middle;  /*로고의 수평정렬을 middle(중앙)으로 하겠다. > 그럼 그림이 밑으로 내려옴. 즉, 하늘색배경이라는 부모 요소에 맞추겠다는 것*/
+
+    border: 1px solid #fff;
+    border-radius: 15px;
+    opacity: 0.9; /*약간 불투명하게*/
+}
+
+
+
+
+
+header .inner-header .gnb {
+    /* background: violet;       확인을 위해 임시로 색칠 */
+    float: left;
+    margin-left: 80px;
+}
+
+
+
+
+
+header .inner-header .gnb li {
+    margin-right: 80px;
+}
+
+
+
+
+
+header .inner-header .gnb li a {
+    display: block;
+}
+
+
+
+
+
+
+header .inner-header .gnb li a:hover {
+    color: #ff8342;
+}
+
+
+
+
+
+header .inner-header nav li a {  /*gnb와 tnb를 둘다 한번에 지목하기 위해선 nav를 쓴 것이다.*/
+    font-size: 16px;
+    color: #fff;
+}
+
+
+
+
+
+
+header .inner-header .tnb {
+    /* background: greenyellow;  확인을 위해 임시로 색칠 */
+    float: right;
+}
+
+
+
+
+header .inner-header .tnb li {
+    margin-right: 25px;
+}
+
+
+
+
+header .inner-header .tnb li:first-child i,
+header .inner-header .tnb li:nth-child(2) i {
+    /* li첫번째와 두번째 자식들의 i태그(아이콘)을 지정했다. */
+    margin-right: 8px;
+    font-size: 20px; /*아이콘의 크기*/
+}
+
+
+
+
+header .inner-header .tnb li:last-child a {
+    border : 1px solid #fff;
+    border-radius: 30px;  /*테두리 깎기*/
+    padding: 5px 15px; /*상하5 좌우15*/
+}
+
+
+
+
+header .inner-header .tnb li:last-child a:hover {
+    background: #fff;
+    color: #ff8342;
+}
+
+
+
+
+
+
+/*이제 남은 제품검색의 아이콘을 지정해줘야겠지*/
+header .inner-header .tnb li:last-child i {
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+
+
+header .inner-header nav li {
+    float: left;
+}
+
+
+
+
+/*여기까지 하면 오렌지 색이 없어졌다. 클리어 픽스 지정하러 html로 가자.
+  부모인 inner-header에 클리어픽스를주고, common.css에 저장해놨으니 이제 오렌지 색이 나타날 것이다.
+*/
+
+
+
+
+header .inner-header .gnb-mobile {
+    display:none;   /*화면이 작아지면 나타날 수 있게끔. 지금은 아무것도 효과없음
+                     화면을 줄이면 햄버거 버튼이 나타남.
+                    */
+}
+
+
+
+
+
+
+
+/* section.main의 style부분이다 */
+
+section.main {
+    background: url(../img/vis_4.jpg)
+    no-repeat center / cover fixed;
+    height: 100vh; /*어떤 디바이스라도 항상 그 화면을 꽉 채울때는 vh나 vw을 쓴다.*/
+    position:relative /*바로 아래 설명 있음*/
+}
+
+
+section.main .main-title {
+    /* background: yellow; */
+
+    position: absolute;  /*로고 박힌 곳을 기준으로 움직이겠지*/
+    top: 50%;  /*위를 기준으로 50% 내려오고*/
+    left: 50%; /*왼쪽을 기준으로 50% 이동*/
+    /*근데 가운데로 온거 같지가 않으니 속성 하나 더 맥일 거다. 트랜스폼!*/
+    transform: translate(-50%, -50%);  /*이건 거의 공식같은 것이다. 화면 정 중앙으로 올 것이다. */
+    /*즉, 부모는 sction.main인데 포지션이 없으니 얘는 화면 기준으로 잡힌 것이다. 즉, 부모기준으로 움직일 거면 위 section.main{ 에 position:relative를 줘야 가운데로 온다. */
+
+    color: #fff;
+    text-align: center;
+    text-shadow: 2px 2px 10px #123; ;  /* 흰색글씨가 잘 안보이니 그림자 주자,
+                                            그림자 상하2px 좌우2px 크기10px 색#123*/
+
+    animation: uprise 1s; /*나머진 기본값으로 하려고 안써줄거임. */
+ }
+
+
+@keyframes uprise {  /*from ~ to은 0에서 100까지다.*/
+    from {
+        opacity: 0;  /*투명도를 0으로 줬다가*/
+        top: 60%;
+    }
+    to {
+        opacity: 1;
+        top: 50%;    /*즉, 10%정도 떠 오를 수 있도록.*/
+    }
+}
+
+
+
+
+section.main .main-title h2 {
+    font-size: 55px;
+}
+
+
+
+section.main .main-title p {
+    font-size: 25px;
+    margin: 20px 0; /*상하20 좌우0*/
+}
+
+
+
+section.main .main-title .view {
+    font-size: 20px;
+    letter-spacing: 2px;  /*글자 간의 간격*/
+
+    /*width를 주고 싶으니 display 블록 주자 왜? a태그잖아*/
+    display: block;
+    width: 180px;
+    margin: 0 auto; /*좌우로만 오토*/
+    border: 1px solid #fff;
+    border-radius: 40px;
+    padding: 8px 0;
+
+
+    position: relative;
+    overflow: hidden; /*넘치는 요소를 가려준다. 즉, 호버하면 깎은 모서리 밖에 조금 더 튀어나온(넘치는) 사각형이 없어질 것이다.*/
+}
+
+
+
+section.main .main-title .view::after {  /*가상요소추가할꺼야*/
+    content: '';
+    width: 0;  /*확인을 위해 일단 100% 줬다가 트랜지션 0.3s까지 준 다음 0으로 바꿔줬다.*/
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    position: absolute;   /*위의 view 기준으로 움직임. 위에 ralative준다. 안주면 화면기준으로 움직임*/
+    
+    
+    /*여기서 앱솔주고 위에서 relative줬으니 위 view기준으로 탑0 레프트0 줬다.*/
+    top: 0;
+    left: 0;
+    transition: 0.3s;
+
+}
+
+
+
+section.main .main-title .view:hover::after {
+    width: 100%;  /*호버로 넓이를 가득 채우기! > 마우스 올리면 호버가 진행된다. */
+}
+
+
+
+
+
+/*      section에 들어갈 디자인을 일괄 지정       */
+section .title {
+    text-align: center;
+}
+
+
+section .title h2 {
+    font-size: 45px;
+    color : #111;
+    margin-bottom: 10px;
+}
+
+
+
+section .title p {
+    font-size: 18px;
+    color: #555;
+}
+
+
+
+section .sub-container {
+    /* background: tomato; */
+    width: 74%; /*양쪽 골고루. 100-74=26이니까 좌우로 13씩 나누겠지*/
+    margin: 0 auto;
+}
+
+
+
+
+
+
+/*           section.about style        */
+section.about {
+    /* background: orange; */
+    margin: 80px 0;
+}
+
+
+
+section.about .sub-container {  
+    /* background: skyblue; */
+    margin-top: 30px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 30px;
+}
+
+
+
+section.about .sub-container li {
+    box-sizing: border-box; /*width가 망가지면 안되니까..패딩의 문제도 일어날 수 있으니 막자*/
+    float: left;
+    width: 33.3333%;  
+    height: 510px;
+}
+
+
+
+section.about .sub-container li .img-box {
+    overflow: hidden;  /*scale이랑 0.6s 까지 줬지만 호버하면 사진이 확 커지는, 부모요소까지 넘치는 부분은 보이지 않게!*/
+}
+
+
+section.about .sub-container li .img-box img {
+    width : 100%;  /*이미지가 넘치고 있으니 조절해주자, 부모(바로위)의 100%.*/
+    transition: 0.6s;  /*아래 scale을 줬는데 팍팍 늘어나면 재미없으니 트랜지션까지 줬다!*/
+
+
+}
+
+
+section.about .sub-container li a:hover .img-box img {
+    transform: scale(1.2);  /*a의 호버가 발생하면 이미지 박스안의 이미지 태그를 1.2배로 늘려 주겠다 */
+
+}
+
+
+
+
+section.about ul li a .text {
+    padding: 25px;
+}
+
+
+section.about ul li a .text h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+
+
+section.about ul li a .text p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+
+section.about ul li a .text p.more {
+    /*일괄 대소문자 변경 <-> lowercase는 소문자이다.*/
+    text-transform: uppercase;  /*대문자로 변경해주는 속성. 별거없음..*/
+    
+    font-weight: bold;
+    /* background: skyblue; */
+    padding-left: 40px;
+
+    position: relative;
+}
+
+
+
+
+
+
+/*more 가상요소 비포를 추가해서 깎고 원을 넣은 것이다. 귀찮으면 아이콘 박으면 됨*/
+section.about ul li a .text p.more::before {
+    content: '→';
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;  /*대충 공식같지 않은 공식인데 50%깎으면 원이 된다.*/
+    background: #ff8342;  /*근데 블록요소니 세로로 되어 있다. float left는 빡세니 포지션 앱솔 주자*/
+    
+
+    position: absolute; /*앱솔을 줬다는건 기준으로 삼을 부모가 필요하다는건데..*/
+    top: -7px; 
+    left: 0;
+    /*top 0 left 0 줘도 안되니 위위에 포지션 렐러티브를 주자 그럼 대충 먹는다 더 손봐야 하긴 한다.*/
+    /*top 0 left 0 줬을 때 원을 조금 올려야 하니 top을 -7정도를 줘서 위로 올려 버리자 그리고 스카이블루 색을 빼고 확인해보자*/
+}
+
+
+
+/*          section.innovation style        */
+section.innovation {
+    margin-bottom: 150px;
+}
+
+
+
+section.innovation .img-box{
+    margin-top: 50px;
+    height: 540px;
+    background: url(../img/product_1.jpg)
+    no-repeat center / cover;
+
+    position: relative;
+}
+
+
+section.innovation .img-box .inner {
+    background: #3a3c4e;
+    width: 80%;
+    color: #fff;
+    
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, 0);  /*x축만 -50% > 그럼 가운데 아래로 올 것임*/
+}
+
+
+
+section.innovation .img-box .inner h3 {
+    background: #fff;
+    color: #222;
+    font-size: 18px;
+    padding: 25px 45px;  /*상하25 좌우45*/
+    box-sizing: border-box;
+}
+
+
+
+section.innovation .img-box .inner .bottom {
+    padding: 35px 85px;
+    box-sizing: border-box;
+}
+
+
+section.innovation .img-box .inner .bottom p {
+    float: left;
+    width: 70%;
+    line-height: 1.6;
+}
+
+
+
+
+/*얘도 float으로 띄우자*/
+section.innovation .img-box .inner .bottom a {
+    /*display: block;*/                  /*float을 사용하면 알아서 display가 block으로 바꿔준다. 그래서 display안써도됨*/
+    float: right;    
+    padding: 7px 30px;
+    border-radius: 50px;
+    background: #ff8342;
+}
+
+
+
+section.innovation .img-box .inner .bottom a:hover {
+    background: #f86010;
+}
+
+
+
+/*     section.me style     */
+section.me {
+    background: url(../img/me.jpg) 
+    no-repeat center / cover;
+    padding: 80px 0;
+    margin-bottom: 150px;
+}
+
+
+
+section.me ul.list {
+    margin-top: 50px;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
+
+
+
+
+section.me ul.list > li {  /*li가 하나가 아니니 직속으로 얘기하자*/
+    padding: 30px 60px;
+}
+
+
+section.me ul.list > li:first-child{
+    border-bottom: 1px solid #ddd;
+}
+
+
+
+section.me ul.list > li h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+
+
+section.me ul.list > li h3 span {
+    position: absolute;  /*앱솔 썼다는건 스팬을 품은 h3의 포지션을 또 줘야한다. ㅔㄹㄹ러티브*/
+    left: -30px;  /*-30은 왼쪽으로 이동한다.*/
+    color: #ff8342;
+}
+
+
+
+section.me ul.list > li p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+
+
+
+section.me ul.list > li .more {
+    font-size: 16px;
+    font-weight: bold;
+    
+}
+
+
+section.me ul.list > li .more span {
+    color: #ff8342;
+    margin-left: 3px;
+    font-size: 14px;
+}
+
+
+
+
+section.me ul.list ul.in {
+    margin-bottom: 30px;
+}
+
+
+
+section.me ul.list ul.in li em {   /*float이나 position주면 인라인인 em은 자동으로 블록요소로 바뀜*/
+    float: left;
+    font-weight: bold;
+    width: 12%;
+}
+
+
+
+section.me ul.list ul.in li p {  /*이거하고 html로가서 clearfix줘야겠지~*/
+    float: left;
+    position: relative;   /*아래 p::before에 앱솔줬으니 부모인 여기에 포지션렐러티브와야지~*/
+}
+
+
+
+section.me ul.list ul.in li p::before{
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #ff8342;
+    position: absolute;   /*앱솔은 기준이 필요하다는 것을 알지 이제?*/
+    left: -35px;          /*왼쪽으로 이동하는 것이다. */
+    top: 8px;
+}
+
+
+#incruit-btn {
+    /*버튼태그로 인라인이라 가로로 배치된다. 넓이 높이도 못주니 블록으로 먼저 바꿔주자*/
+    display:block;
+    width: 280px;
+    background: #ff8342;
+    color: #fff;
+    margin: 20px auto 0;
+    font-weight: 700;
+    border-radius: 50px;
+    padding: 10px 0; /*상하10 좌우0*/
+    cursor: pointer;   /*올리면 손가락 모양으로 됨*/
+}
+
+
+
+
+
+
+
+
+section.sns {
+    margin: 70px 0;
+}
+
+section.sns .sub-container{
+    margin-top: 30px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 30px;
+}
+
+
+section.sns .sub-container li {
+    box-sizing: border-box;
+    float:left;
+    width:33.3333%;
+    height: 510px;
+}
+
+
+section.sns .sub-container li .img-box {
+    height: 350px;
+    overflow: hidden;
+}
+
+
+section.about .sub-container li .img-box img {
+    width: 100%;
+}
+
+
+section.sns ul li a .bottom {
+    padding: 20px;
+}
+
+section.about ul li a .bottom .color {
+    margin-bottom: 100px;
+}
+
+
+section.sns ul li a p {
+    font-size: 18px;
+}
+
+section.sns ul li .color{
+    color: tomato;
+}
+
+section.sns ul li .bottom p{
+    margin-top: 15px;
+}
 
 
 
