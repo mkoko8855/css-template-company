@@ -121,6 +121,11 @@ header .inner-header .gnb li {
 
 header .inner-header .gnb li a {
     display: block;
+    /*
+    일반적으로 설정하지 않아도 div가 갖게되는 기본값입니다. (태그에 따라 기본값이 다를 수 있습니다.)
+
+기본적으로 width 가 자신의 컨테이너의 100% 가 되게끔 합니다. 쉽게 말하자면, 가로 한 줄을 다 차지하게 됩니다.
+    */
 }
 
 
@@ -656,57 +661,470 @@ section.me ul.list ul.in li p::before{
 
 
 
+
+
+/*          section.sns style         */
+
+
 section.sns {
-    margin: 70px 0;
-}
-
-section.sns .sub-container{
-    margin-top: 30px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 30px;
+    margin-bottom: 60px;  /*풋터랑 거리를 벌려주기 위해 사용.*/
 }
 
 
-section.sns .sub-container li {
+
+section.sns ul{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+
+
+section.sns ul li {
     box-sizing: border-box;
     float:left;
-    width:33.3333%;
-    height: 510px;
+    width:32%; /*사진3개 다 더하면 96이지? 그럼 사진과 사진 사이의 공백들을 2%씩 2개를 줘버리면 비율이 맞겠지*/
+               /*마진right 2%씩 주고 li의 마지막 자식을 지정해주고(마지막사진의오른쪽) 얘 마진을 없애주면 된다.*/
+    margin-right: 2%;
 }
 
 
-section.sns .sub-container li .img-box {
-    height: 350px;
+
+
+section.sns ul li:last-child {
+    margin-right: 0;  /*마지막 자식인 사진에 오른쪽부분은 마진0(마진안줄라고 0줌)을 줘야 균일하게 맞춰진다. 지금 사진비율은 엉망인데 고쳐나아갈것이다.*/
+}
+
+
+
+
+
+section.sns ul li .img-box {
+    max-height: 220px;
     overflow: hidden;
+    position: relative;
 }
 
 
-section.about .sub-container li .img-box img {
+
+
+section.sns ul li .img-box img {
+    width: 100%;  
+}
+
+
+
+
+section.sns ul li .img-box::before{     /*비포로 커튼, 에프터로 블로그 달아줄 거임*/
+    content: '';  /*글씨쓸게없어도 이건 무조건 써줘야 된다.*/
+    width: 0; 
+    height: 100%;   /*하이트 넣어놔야 색이먹는 즉, 적용되는 것을 볼 수 있음*/
+    background: rgba(255, 131, 66, 0.75);  /*0.75는 투명도*/
+    position: absolute;  /*탑0 레프트0 줄거임. 그래서 앱솔준것*/
+    top: 0;
+    left: 0;  /*0들은 안줘도되긴한데 명확하게 하기 위해.*/
+    /*앱솔줬으니 부모요소에 포지션렐러티브 추가 ㄱㄱ*/
+    transition: 0.5s;
+}  
+
+
+
+section.sns ul li a:hover .img-box::before{  /*클래스이름 sns인 섹션 그 안에 있는 ul 그 안에 있는 li 안에있는 a태그에 호버가 발생했을 떄 class이름 이미지 박스인 div의 전 요소인 before에다가 width 100%를 먹이겠다. */
     width: 100%;
 }
 
 
-section.sns ul li a .bottom {
-    padding: 20px;
+
+section.sns ul li .img-box::after{
+    content: 'BLOG';
+    font-size: 15px;
+    font-family: 'Exo 2', sans-serif;
+    border: 1px solid #fff;
+    border-radius: 40%;
+    color: #fff;
+    padding: 5px 30px;  /*상하5 좌우30*/
+
+    /*블로그버튼은 부모요소에 가운데에 위치하니, 앱솔주고 부모요소에 렐러티브 있나 확인하는데 아까 걸어놨지? 걔가 기준이야!*/
+    position: absolute;
+
+
+    /*가운데에 위치하려면 공식 알려줬지?*/
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;  /*숨긴다음*/
+    transition: 0.7s;  /*서서히들어나게끔*/
 }
 
-section.about ul li a .bottom .color {
-    margin-bottom: 100px;
+
+section.sns ul li a:hover .img-box::after{
+    opacity: 1;  /*커버갖다대면 서서히 나타날 것이다!*/
 }
 
 
-section.sns ul li a p {
+
+section.sns ul li .bottom {
+    padding: 20px 0 20px 30px;
+    box-sizing: border-box;  /*박스크기를 증가시키지 않도록 처리.*/
+}
+
+
+section.sns ul li .bottom p {
     font-size: 18px;
 }
 
-section.sns ul li .color{
-    color: tomato;
+
+section.sns ul li .bottom p.color{
+    color: #ff8342;
+    font-size: 15px;
+    margin-bottom: 10px;
 }
 
-section.sns ul li .bottom p{
-    margin-top: 15px;
+
+
+section.sns ul li .bottom p.time {
+    color: #999;
+    font-size: 14px;
+    margin-top: 30px;
 }
 
 
 
 
+section.sns ul li .bottom p.time i {  /*아이콘 부분*/
+    margin-right: 5px;
+    font-size: 0.9em;   /*9%줄이기*/
+}
+
+
+
+
+
+/*      footer stlye      */
+footer {
+    border-top: 1px solid #999;
+    padding : 30px 0;
+}
+
+
+footer .inner {
+    width: 84%;
+    margin: 0 auto;  /*가운데 정렬!*/
+}
+
+
+footer .inner .ft-logo {
+    float: left;
+    width: 14%;
+}
+
+
+
+footer .inner .ft-logo img {
+    width: 100%;   /*부모요소의 100%*/
+}
+
+
+footer .inner .address {  /*ul을의미하겠지*/
+    float: left;  /*부모의 클리어픽스해야지 html ㄱㄱ*/
+    margin-left: 100px;
+    margin-top: 8px;
+}
+
+
+footer .inner .address li:first-child {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+footer .inner .address li:last-child {
+    color: #999;
+}
+
+
+footer .inner .list {   /*얘도 ul이다. */
+    float: right;
+    margin-top: 20px;
+}
+
+
+footer .inner .list li {
+    float: left;
+    margin-left: 80px;
+}
+
+
+footer .inner .list li:last-child {
+    font-weight: 700;
+}
+
+
+footer .inner .list li a:hover {
+    color: #ff8344;
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*      가장 큰 화면을 고려해보자     >    반응형 웹 디자인 할 것!      */
+
+
+/*      노트북 해상도 1600px 미만    */
+@media screen and (max-width: 1599px)  {
+    /*개발자 도구 열고 Responsive로가서 직접 가로1599를 적용해본다.
+      어떤식으로 나올지 살펴본다. 노트북 비율은 16:9가 이상적이다.
+      1599 : x = 16 : 9 > x는 900. >  가로는 1599 세로는 900으로 해주면 된다.
+      화면을 100%로 했을 때, 무너지고 있다.
+    */
+
+    header .inner-header nav {
+        display: none;   /*숨길거야*/
+
+    }
+
+    header .inner-header .gnb-mobile {
+        display: block;  /*이제는 드러내줄거야*/
+        float: right;
+        font-size: 40px;
+        color: #fff;
+    }
+
+    section.main .main-title h2{
+        font-size: 35px;
+    }
+
+    section.main .main-title p{
+        font-size: 18px;
+    }
+
+    section.main .main-title .view {
+        font-size: 12px;
+        width: 120px;
+    }
+
+    section.sns ul li .img-box{
+        max-height: 170px;
+    }
+
+    
+    footer .inner .ft-logo {
+        width: 30%;
+    }
+
+
+}
+
+/*   태블릿 1024px 이하일 때, 해상도 (아이패드프로)*/
+@media screen and (max-width: 1024px) {
+    /*가로픽셀이 1025까지 문제가 없는지 확인해야한다. (세로577) > 조금 문제 있음*/
+    /*이 1024 577 기준으로, 문제있는 것들을 위의 비중을 맞춰가보자*/
+
+
+    header .inner-header, section .sub-container, footer .inner{
+        width:95%;  /*양쪽엔 2.5%씩의 마진만 가질 수 있게. 모바일은 거의 마진없잖아?*/
+    }
+
+
+    section.main .main-title h2{
+        font-size: 55px;
+    }
+
+    section.main .main-title p {
+        font-size: 22px;
+    }
+
+    section.main .main-title .view {
+        font-size: 16px;
+        width: 180px;
+    }
+
+    section.me ul.list ul.in li p::before {
+        left: -20px;
+    }
+
+    footer .inner .list {
+        float: left;
+    }
+
+
+}
+
+
+
+
+/*   태블릿 768px 이하일 때, 해상도 아이패드 미니 */
+@media screen and (max-width: 768px) {
+
+    section.main .main-title h2 {
+        font-size: 40px;
+    }
+
+    section.main .main-title p {
+        font-size: 18px;
+    }
+
+    section.about .sub-container li {
+        float: none;  /*플롯을 레프트로해서 가로로배치였지만 none을 줘서 아이패드 미니에서는 세로로 보인다.*/
+        width: 100%;  /*어차피 세로로 한칸에 한칸씩 들어갈거라 애초에 100%로 줘도됨*/
+        margin-bottom: 150px;
+    }
+
+    section.about .sub-container li .img-box {
+        height: 500px;
+    }
+
+    section.innovation .img-box .inner .bottom {
+        padding: 30px;
+    }
+
+    section.innovation .img-box .inner .bottom p {
+        float: none;  /*얘도 해제시켜줬음*/
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    section.innovation .img-box .inner .bottom a {
+        float: none;    /*얘도 해제시켜줬음*/
+        display: block;  /*블록줘야 width먹겠지~*/
+        width: 100px;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    section.me {
+        padding: 50px 0;
+    }
+
+    section.me ul.list ul.in li em {
+        float: none;
+        width: 100%;
+        font-size: 17px;
+        margin-bottom: 5px;
+    }
+
+    section.me ul.list ul.in li p {
+        float: none;
+        margin-top: 10px;
+    }
+
+    section.sns ul li {
+        float: none;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    section.sns ul li a .img-box {
+        max-height: none;  /*이제는 원본사진의 비율와도 상관이없다 세로로배치할꺼니까. */
+    }
+
+    footer .inner .ft-logo {
+        float: none;  /*얘도 마찬가지. 가로로배치하는게 의미 없으니 플롯없애버리자*/
+        width: 30%;
+        margin: 0 auto;
+    }
+
+    footer .inner .address {
+        float: none;
+        width: 100%;
+        text-align: center;
+        margin: 20px auto;
+    }
+
+    footer .inner .list li {   /*맨 아래 애들*/
+        margin-left: 60px;
+    }
+
+}
+
+
+/*   모바일 414px 이하일 때, 해상도 아이폰 6/7/8 plus */
+@media screen and (max-width: 414px) {
+    header {
+        height: 80px;
+        line-height: 80px;
+    }
+
+    header .inner-header .logo {
+        width: 150px;
+    }
+
+    section.main .main-title h2 {
+        font-size: 30px;
+    }
+
+    section.main .main-title p {
+        font-size: 16px;
+    }
+
+    section.main .main-title .view {
+        width: 150px;
+        font-size: 14px;
+    }
+    
+    section .title h2 {
+        font-size: 25px;
+    }
+
+    section .title p {
+        font-size: 14px;
+    }
+
+    section.about {
+        padding: 30px 0;
+    }
+
+    section.about .sub-container li .img-box {
+        height: 300px;
+    }
+
+    section.about .sub-container li {
+        border: 1px solid #ddd;
+        box-sizing: border-box;
+        background: #fafafa;
+        margin-bottom: 30px;
+        height: fit-content;  /*품고있는요소에 딱맞게!*/
+    }
+
+    section.innovation .img-box {
+        height: 400px;
+    }
+
+    section.innovation .img-box .inner {
+        top: 50%;
+    }
+
+
+    section.me ul.list > li {
+        padding: 20px 20px 20px 45px;
+    }
+    section.me ul.list > li p {
+        text-align: justify;  /*글자정렬인데 양쪽끝을 반듯하게.*/
+    }
+
+    footer .inner .ft-logo {
+        width: 50%;
+    }
+
+    footer .inner .list {
+        display: none;
+    }
+
+    br.mo{
+        display: block;  /*기본이 none이니 블록으로 해서 보여주자*/
+    }
+
+
+
+
+
+
+}
